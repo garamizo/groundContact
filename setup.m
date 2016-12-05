@@ -1,7 +1,14 @@
+% plate dimensions
+phei = 28.8e-3;
+
+% plate base impedance
+kplate = 100;
+bplate = 0.1;
+
 % foot dimensions
-Cdist = 20e-2;
-wid = 7e-2;
-hei = 12e-2;
+Cdist = 15e-2;
+wid = 5e-2;
+hei = 6e-2;
 th = (pi/2:0.5:3*pi/2)';
 r = [cos(th) sin(th) -ones(size(th))*hei/wid
      -cos(-th)+Cdist/wid sin(-th) -ones(size(th))*hei/wid]' * wid;
@@ -18,7 +25,9 @@ b = 5;
 load('stance_trajectory4.mat')
 tend = tvar.qshin.Time(end);
 
-tvar.tshin.Data = tvar.tshin.Data - 15e-2*(exp(-3*(tvar.tshin.Time - 0.6).^2) - 0.5);
+% tvar.tshin.Data(:,3) = tvar.tshin.Data(:,3) - 10e-2*(exp(-3*(tvar.tshin.Time - 0.6).^2) - 0.5);
+tvar.tshin.Data = tvar.tshin.Data - [-0.3227, -0.1955, 0.07];
+
 % tvar.vshin.Data = tvar.vshin.Data*0;
 % 
 % tvar.qshin.Data = quatmultiply(quatinv(tvar.qshin.Data), tvar.qshin.Data);
